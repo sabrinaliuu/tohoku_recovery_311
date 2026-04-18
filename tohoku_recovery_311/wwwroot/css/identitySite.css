@@ -1,0 +1,23 @@
+﻿/* for login and register page */
+body {
+    margin-bottom: 60px;
+    font-family: sans-serif;
+    line-height: 1.5;
+}
+
+h1 {
+    font-size: 24px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 20px;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+.container{
+    width: 100%;
+}

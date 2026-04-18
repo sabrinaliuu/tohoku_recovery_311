@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css">
+<div id="viewDiv"></div>
+
+<!-- Panel -->
+<button id="aboutToggle" class="about-btn">ⓘ</button>
+<div id="aboutPanel" class="panel about-panel" style="display: none;">
+    <div class="panel-header"></div>
+    <span class="close-btn" onclick="closePanel('aboutPanel')">×</span>
+    <h4 style="padding: 10px 0 0 0px">About the Map</h4>
+        <p>
+        This is a website showing the 3.11 Densho Road, which including many disaster memorial facilities related to 311 Great East Japan Earthquake.
+        </p>
+        <p>
+            Also, you can use it for recording your visits and experiences to 3.11 Densho Road.
+        </p>
+    <h5># What is 3.11 Densho Road (3.11伝承ロード)</h5>
+    <p><b>3.11 Densho Road</b> is a network of disaster memorial facilities that support various initiatives and projects focused on disaster prevention and preparedness, 
+            aiming to pass on the lessons learned from the 311 Great East Japan Earthquake.</p>
+    <h5># About the Category of Disaster Memorial Facilities</h5>
+    <p>
+        According to 3.11 Densho Road Promotion Orginization, disaster memorial facilities convey the facts of the Great East Japan Earthquake and the 1essons learned from it, including the following:
+    </p>
+    <ol>
+        <li>Facilities for understanding lessons from the disaster</li>
+        <li>Facilities that contribute to understanding disaster prevention and preparedness</li>
+        <li>Facilities for understanding the horror of disasters and the fearsomeness of nature</li>
+        <li>Facilities with historic or academic value related to disasters</li>
+        <li>Other facilities that communicate the facts of the disaster and the lessons learned from it</li>
+    </ol>   
+    <p>For each category:</p>
+    <ul>
+        <li>Category 1: Facilities to which one or more of the above apply.</li>
+        <li>Category 2: Category 2 includes facilities from Category 1 that are easy for people to visit, such as those with convenient access to public transport or with a paid or free parking lot in the vicinity.</li>
+        <li>Category 3: Includes facilities from Category 2 that particularly consider visitor's ease of understanding by, for example, providing tour guides or storytelling activities.</li>
+    </ul>
+    <p style="white-space: nowrap;">Reference: <a href="https://www.311densho.or.jp/en/" target="_blank">3.11 Densho Road Promotion Orginization</a></p>
+</div>
+       
+<button id="leftToggle" class="left-btn">☰</button>
+<div id="leftPanel" class="panel left-panel">
+        <div class="panel-header"></div>
+    <span class="close-btn" onclick="closePanel('leftPanel')">×</span>
+        <h4>Controls</h4>
+        <div id="layerControl">
+            <h5>Disaster Memorial Facilities </h5>
+            <select id="fieldSelect">
+                <option value="">All Points</option>
+                <option value="Prefecture">Prefecture</option>
+                <option value="Category">Category</option>
+            </select>
+            <div id="uniqueValuesContainer">
+            </div>
+        </div>
+        <div id="prefLayer" class="checkbox-wrapper-13">
+            <h5>Prefectue layer</h5>
+        <label style="display: flex; align-items: center; gap: 6px;"><input type="checkbox" value="pref" checked><span style="width: 12px; height: 12px; background-color: rgba(100, 100, 100, 0.2); border: 1px solid rgb(255, 255, 255);"></span> Prefectures</label>
+        </div>
+        <div class="chart-container">
+            <h5>Heatmap for Prefecutre v.s. Category</h5>
+            <div id="myChart"></div>
+        </div>
+
+</div>
+    
+<!--</div>-->
+<div id="tooltip"></div>
+
+@section Scripts {
+    @* Ensure these scripts to the bottom of the <body>, i.e. after jQuery and Bootstrap have already loaded. *@
+    <script>
+        // ASP.NET Identity status
+        const isAuthenticated = @(User.Identity.IsAuthenticated.ToString().ToLower());
+    </script>
+    <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+    <script src="https://js.arcgis.com/4.29/"></script>
+    
+    <script src="/js/popup_login.js"></script>
+    <script src="/js/map.js"></script>
+    <script src="/js/panel.js"></script>
+    
+    
+}
