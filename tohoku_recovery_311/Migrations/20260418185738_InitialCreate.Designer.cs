@@ -12,15 +12,15 @@ using tohoku_recovery_311.Data;
 namespace tohoku_recovery_311.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260416091724_ChangeFieldNameGeoPoints")]
-    partial class ChangeFieldNameGeoPoints
+    [Migration("20260418185738_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.5")
+                .HasAnnotation("ProductVersion", "8.0.22")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
