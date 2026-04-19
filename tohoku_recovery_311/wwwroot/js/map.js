@@ -116,7 +116,6 @@
 
         uniqueValuesContainer.innerHTML = ""; // clean Loading
         createCheckbox("All", "All"); // create init checkbox
-        updateRenderer();
     }
     init();
 
@@ -211,6 +210,7 @@
                 type: "simple",
                 symbol: createMarkerSymbol(colorMap["All"])
             };
+            return;
         }
 
         // Visited
