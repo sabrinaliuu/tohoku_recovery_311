@@ -2,8 +2,9 @@
     "esri/Map",
     "esri/views/MapView",
     "esri/layers/GeoJSONLayer",
-    "esri/renderers/UniqueValueRenderer"
-], function (Map, MapView, GeoJSONLayer, UniqueValueRenderer) {
+    "esri/renderers/UniqueValueRenderer",
+    "esri/renderers/HeatmapRenderer"
+], function (Map, MapView, GeoJSONLayer, UniqueValueRenderer, HeatmapRenderer) {
 
     let layer;
     let layer_pref;
@@ -62,6 +63,26 @@
         );
         const url = URL.createObjectURL(blob);
 
+        // set layer for heatmap
+        layer_heatmap = new GeoJSONLayer({
+            url: url,
+            outFields: ["*"]
+        });
+
+        // init heatmap render
+        layer_heatmap.renderer = {
+            type: "heatmap",
+            colorStops: [
+                { color: "rgba(147, 147, 255, 0)", ratio: 0 },
+                { color: "rgba(102, 179, 255, 0.8)", ratio: 0.25 },
+                { color: "rgba(125, 255, 121, 0.8)", ratio: 0.5 },
+                { color: "rgba(255, 225, 83, 0.8)", ratio: 0.75 },
+                { color: "rgba(255, 81, 81, 0.8)", ratio: 1 }
+            ],
+            //maxDensity: 0.01
+        };
+        map.add(layer_heatmap);
+
         // set layer
         layer = new GeoJSONLayer({
             url: url,
@@ -78,6 +99,8 @@
             symbol: createMarkerSymbol(colorMap["All"])
         };
         map.add(layer);
+
+
 
         // revoke object
         layer.when(() => {
@@ -256,6 +279,12 @@
         
     };
     window.updateMapRenderer = updateRenderer;
+
+    // layer_heatmap: control
+    const cbHeatmapLayer = document.querySelector("#heatmapLayer input");
+    cbHeatmapLayer.addEventListener("change", () => {
+        layer_heatmap.visible = cbHeatmapLayer.checked;
+    });
 
     // layer_pref: control
     const cbPrefLayer = document.querySelector("#prefLayer input");
