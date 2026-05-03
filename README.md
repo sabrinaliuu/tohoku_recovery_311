@@ -23,7 +23,7 @@ This is a website showing the 3.11 Densho Road, which includes many disaster mem
 ### Interface
 #### - Control panel (left side)
 * Select: Select a specific  <b>option (property/field name)</b> to show the facilities  points rendered by the category of property
-* Checkbox: Visible / Invisible the points with the category or layer
+* Checkbox: Visible / Invisible with the category / heatmap for facilities / prefecture layer
 * Heatmap: Show the counts of facilities v.s. prefectures in Tohoku
 
 #### - Info panel (right side)
