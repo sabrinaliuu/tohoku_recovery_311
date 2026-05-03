@@ -58,10 +58,14 @@
             f.properties.Visited = visitedSet.has(code) ? "1" : "0"; 
         });
 
+        // let geojson transfer into blob
+        const blob = new Blob([JSON.stringify(geojson)], { type: "application/json" });
+        const blobUrl = URL.createObjectURL(blob);
+
         // set layer for heatmap
         layer_heatmap = new GeoJSONLayer({
-            url: "/data/311.geojson",
-            outFields: ["*"]
+            url: blobUrl,
+            outFields: [] // Do not need any field
         });
 
         // init heatmap render
@@ -80,8 +84,8 @@
 
         // set layer
         layer = new GeoJSONLayer({
-            url: "/data/311.geojson",
-            outFields: ["*"],
+            url: blobUrl,
+            outFields: ["name", "prefecture", "category", "code"],
             popupTemplate: {
                 title: "{name}",
                 content: window.createPopupContent
@@ -102,7 +106,7 @@
         // start to get visits and POI data at the same time
         const [visitRes, pointsRes] = await Promise.all([
             isAuthenticated ? fetch("/UserVisits/uservisits") : Promise.resolve(null),
-            fetch("/api/geopointdb")
+            fetch("/data/311.geojson")
         ]);
 
         if (visitRes) {
