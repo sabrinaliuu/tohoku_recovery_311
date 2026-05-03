@@ -83,7 +83,7 @@
             url: "/data/311.geojson",
             outFields: ["*"],
             popupTemplate: {
-                title: "{Name}",
+                title: "{name}",
                 content: window.createPopupContent
             }
         });
@@ -94,7 +94,6 @@
             symbol: createMarkerSymbol(colorMap["All"])
         };
         map.add(layer);
-
 
     }
 
