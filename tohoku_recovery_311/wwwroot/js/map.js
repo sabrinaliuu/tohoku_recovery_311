@@ -57,15 +57,10 @@
             const code = f.properties.code;
             f.properties.Visited = visitedSet.has(code) ? "1" : "0"; 
         });
-        const blob = new Blob(
-            [JSON.stringify(geojson)],
-            { type: "application/json" }
-        );
-        const url = URL.createObjectURL(blob);
 
         // set layer for heatmap
         layer_heatmap = new GeoJSONLayer({
-            url: url,
+            url: "/data/311.geojson",
             outFields: ["*"]
         });
 
@@ -85,7 +80,7 @@
 
         // set layer
         layer = new GeoJSONLayer({
-            url: url,
+            url: "/data/311.geojson",
             outFields: ["*"],
             popupTemplate: {
                 title: "{Name}",
