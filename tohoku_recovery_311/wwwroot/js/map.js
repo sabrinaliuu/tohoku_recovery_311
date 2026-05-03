@@ -96,11 +96,6 @@
         map.add(layer);
 
 
-
-        // revoke object
-        layer.when(() => {
-            URL.revokeObjectURL(url);
-        })
     }
 
     async function init() {
