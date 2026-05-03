@@ -17,7 +17,7 @@
 This is a website showing the 3.11 Densho Road, which includes many disaster memorial facilities related to the 311 Great East Japan Earthquake
 
 <a href="https://tohokurecovery-aqb5avb5aveyghe3.canadacentral-01.azurewebsites.net/">
-  <img width="766" height="443" alt="tohoku" src="https://github.com/user-attachments/assets/3a7927fc-106f-421f-9c18-6939a4869da6" />
+  <img width="959" height="473" alt="image" src="https://github.com/user-attachments/assets/75088d58-2e1d-4956-93a9-eda1a0badfc7" / >
 </a>
 
 ### Interface
