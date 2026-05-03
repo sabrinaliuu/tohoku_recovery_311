@@ -3,8 +3,9 @@
     "esri/views/MapView",
     "esri/layers/GeoJSONLayer",
     "esri/renderers/UniqueValueRenderer",
-    "esri/renderers/HeatmapRenderer"
-], function (Map, MapView, GeoJSONLayer, UniqueValueRenderer, HeatmapRenderer) {
+    "esri/renderers/HeatmapRenderer",
+    "esri/widgets/Legend"
+], function (Map, MapView, GeoJSONLayer, UniqueValueRenderer, HeatmapRenderer, Legend) {
 
     let layer;
     let layer_pref;
@@ -79,8 +80,26 @@
                 { color: "rgba(255, 81, 81, 0.8)", ratio: 1 }
             ],
             //maxDensity: 0.01
+            legendOptions: 
+            {
+                minLabel: "Low",
+                maxLabel: "High"
+            }
+            
         };
         map.add(layer_heatmap);
+
+        // add legend for heatmap
+        const legend = new Legend({
+            view: view,
+            layerInfos: [
+                {
+                    layer: layer_heatmap,
+                    title: "Density of Facilities"
+                }
+            ]
+        });
+        view.ui.add(legend, "bottom-right");
 
         // set layer
         layer = new GeoJSONLayer({

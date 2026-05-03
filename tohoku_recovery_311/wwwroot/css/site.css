@@ -369,3 +369,11 @@ select:focus {
     font-size: 12px;
     z-index: 99;
 }
+
+/* legend */
+.esri-ui-bottom-right .esri-component {
+    max-width: 120px;
+}
+.esri-legend__layer {
+    overflow: hidden !important;
+}
