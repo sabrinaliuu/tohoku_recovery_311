@@ -20,7 +20,7 @@
     window.view = new MapView({
         container: "viewDiv",
         map: map,
-        center: [141, 39],
+        center: [139, 39],
         zoom: 7
     });
 
