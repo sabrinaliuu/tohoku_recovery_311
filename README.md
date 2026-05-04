@@ -4,7 +4,7 @@
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
   <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white" />
   <img src="https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white" />
-  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" /></br>
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
   <img src="https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" />
   <img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white" />
   <img src="https://img.shields.io/badge/MSSQL-CC2927?style=for-the-badge&logo=microsoft%20sql%20server&logoColor=white" />
@@ -19,6 +19,75 @@ This is a website showing the 3.11 Densho Road, which includes many disaster mem
 <a href="https://tohokurecovery-aqb5avb5aveyghe3.canadacentral-01.azurewebsites.net/">
   <img width="959" height="473" alt="image" src="https://github.com/user-attachments/assets/75088d58-2e1d-4956-93a9-eda1a0badfc7" / >
 </a>
+
+### Structure
+<details>
+  
+<summary>Graph</summary> 
+
+```mermaid
+flowchart TD
+    User((User Interface))
+
+    subgraph Frontend ["Frontend (WebGIS Display)"]
+        direction TB
+        Web[Web Browser]
+        Arcgis[ArcGIS Map SDK / \nGIS Layers]
+        Charts[Chart.js / Chart]
+        AuthUI[Login / Profile UI]
+        
+        Web <--> Arcgis
+        Web <--> Charts
+        Web <--> AuthUI
+    end
+
+    subgraph Backend ["Backend (ASP.NET Core)"]
+        direction TB
+        API[Web API Controllers]
+        IdentityServer[ASP.NET Core Identity]
+        AuthLogic[Authorization / JWT]
+        
+        API <--> IdentityServer
+        IdentityServer <--> AuthLogic
+    end
+
+    subgraph DataProcessing ["Data Processing (ArcGIS)"]
+        direction TB
+        Cleaner[Data Cleaning \n& Normalization]
+    end
+
+    subgraph Storage ["Storage (SQL Server)"]
+        direction TB
+        IdentityDB[(Identity Tables \nUsers / Roles)]
+        Record[(User Visit Records)]
+        GeoJSON[(Disaster Memorial Facilities)]
+    end
+
+    subgraph Sources ["External Sources"]
+        Org[Data Provided by \nOrganization]
+    end
+
+    %% Link
+    User <==> Web
+    Web <==>|1. Authentication| AuthLogic
+    AuthUI <-->|2. Credential Check| IdentityServer
+    
+    API <==>|3. CRUD Operations| Storage
+    Web <==>|4. Protected API Call| API
+    
+    Sources -->|Manual Collection| Cleaner
+    Cleaner -->|Export| GeoJSON
+
+    %% Style
+    style Frontend fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    style Backend fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
+    style DataProcessing fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    style Storage fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style Sources fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+```
+
+</details>
+
 
 ### Interface
 #### - Control panel (left side)
